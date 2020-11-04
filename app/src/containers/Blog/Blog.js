@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
-import './blog.module.css';
+import classes from './blog.module.css';
 
 import axios from 'axios';
 
 class Blog extends Component {
     state = {
         posts: [],            
-                
+        selectedPostId: null,        
     
     }
 
@@ -42,6 +42,10 @@ class Blog extends Component {
 
     }
 
+    handler_selected = (id) => {
+        this.setState({selectedPostId: id})
+    
+    }
 
 
 
@@ -53,7 +57,7 @@ class Blog extends Component {
                     key = {post.id}
                     title = {post.title}
                     author = {post.author}
-                    
+                    clicked = {(key) => this.handler_selected(key)}
                     
                     />     
         
@@ -61,11 +65,15 @@ class Blog extends Component {
 
         return (
             <div>
-                <section className="Posts">
+                <section className={classes.Posts}>
                     {posts}
                 </section>
                 <section>
-                    <FullPost />
+                    <FullPost 
+                        id = {this.state.selectedPostId}
+                    
+                    
+                    />
                 </section>
                 <section>
                     <NewPost />
