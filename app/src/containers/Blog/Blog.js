@@ -22,7 +22,7 @@ class Blog extends Component {
     componentDidMount() {
         axios.get('https://jsonplaceholder.typicode.com/posts')
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 // MUST updated state inside .then
 
                 // only take first 4 data items and convert author to 'Joe'
@@ -57,7 +57,7 @@ class Blog extends Component {
                     key = {post.id}
                     title = {post.title}
                     author = {post.author}
-                    clicked = {(key) => this.handler_selected(key)}
+                    clicked = {() => this.handler_selected(post.id)}
                     
                     />     
         
