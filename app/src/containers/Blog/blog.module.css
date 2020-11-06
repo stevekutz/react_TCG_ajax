@@ -5,3 +5,9 @@
     width: 80%;
     margin: auto;
 }
+
+.Error {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}

@@ -10,7 +10,8 @@ import axios from 'axios';
 class Blog extends Component {
     state = {
         posts: [],            
-        selectedPostId: null,        
+        selectedPostId: null, 
+        error: false,
     
     }
 
@@ -31,13 +32,14 @@ class Blog extends Component {
                     return {
                         ...post,
                         author: 'Joe'
-                    }
-                
+                    }                
                 })
 
-
-
                 this.setState({posts: modifiedPosts})
+            })
+            .catch(error => {
+                console.log(error)
+                this.setState({error: true})
             })
 
     }
@@ -51,17 +53,25 @@ class Blog extends Component {
 
     render () {
 
-    // map posts data from state into Post component
-        const posts = this.state.posts.map(post => {
-            return <Post 
-                    key = {post.id}
-                    title = {post.title}
-                    author = {post.author}
-                    clicked = {() => this.handler_selected(post.id)}
-                    
-                    />     
+        let posts = <p className = {classes.Error}> Error occurred </p>
+
+        if (!this.state.error) {
+            posts = this.state.posts.map(post => {
+                return <Post 
+                        key = {post.id}
+                        title = {post.title}
+                        author = {post.author}
+                        clicked = {() => this.handler_selected(post.id)}
+                        
+                        />     
         
-        })
+            })
+        
+        
+        
+        }
+
+    // map posts data from state into Post component
 
         return (
             <div>
