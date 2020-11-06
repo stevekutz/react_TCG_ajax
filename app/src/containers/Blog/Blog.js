@@ -5,7 +5,9 @@ import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import classes from './blog.module.css';
 
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../axios';
+
 
 class Blog extends Component {
     state = {
@@ -21,7 +23,7 @@ class Blog extends Component {
     // using Lifecycle hooks to fetch data from 'server'
     // axios using Promises due to async nature of requests
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('/posts')
             .then(response => {
                 // console.log(response)
                 // MUST updated state inside .then
