@@ -76,8 +76,19 @@ class Blog extends Component {
     // map posts data from state into Post component
 
         return (
-            <div>
-                <section className={classes.Posts}>
+            <div >
+                <header className={classes.Blog}>
+                    <nav>
+                        <ul>
+                            <li><a href = "/"> Home </a></li>
+                            <li><a href = "/new-post"> New Post </a></li>
+                        
+                        </ul>
+                    </nav>
+                </header>
+
+
+                <section className={classes.Blog}>
                     {posts}
                 </section>
                 <section>
