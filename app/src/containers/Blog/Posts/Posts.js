@@ -7,6 +7,7 @@ import axios from '../../../axios';
 
 import classes from './posts.module.css'
 
+
 class Posts extends Component {
     state = {
         posts: [],  
@@ -53,7 +54,7 @@ class Posts extends Component {
 
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
-                return (<Link to = {'/' + post.id} key = {post.id} >
+                return (<Link className = {classes.Link} to = {'/' + post.id} key = {post.id} >
                             <Post 
                                     // key = {'/' + post.id}
                                     title = {post.title}
