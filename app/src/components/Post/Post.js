@@ -1,5 +1,7 @@
 import React from 'react';
 
+// import {withRouter} from 'react-router-dom';
+
 import classes from './post.module.css';
 
 const post = (props) => (
@@ -11,4 +13,10 @@ const post = (props) => (
     </article>
 );
 
-export default post;
+// normally, Post will not show any routing props even though it is rendered from routed Posts comp
+// using this HOF allows Post component to show all routing props
+// export default withRouter(post)
+
+
+
+export default (post);

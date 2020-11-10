@@ -13,6 +13,9 @@ class Posts extends Component {
     // using Lifecycle hooks to fetch data from 'server'
     // axios using Promises due to async nature of requests
     componentDidMount() {
+
+        console.log(this.props)
+
         axios.get('/posts')
             .then(response => {
                 // console.log(response)
@@ -52,7 +55,7 @@ class Posts extends Component {
                         title = {post.title}
                         author = {post.author}
                         clicked = {() => this.handler_selected(post.id)}
-                        
+                        // {...this.props}  // should provide routing props to Post component
                         />     
             })        
         }

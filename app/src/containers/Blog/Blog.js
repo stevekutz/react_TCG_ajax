@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 
-import {Route, Link} from 'react-router-dom';
+import {Route, NavLink} from 'react-router-dom';
 
 import classes from './blog.module.css';
 
 // import axios from 'axios';
 import axios from '../../axios';
 
+// for use in activeStyle with NavLink
+const myStyle = {color: 'deeppink', textDecoration: 'underline'};
 
 class Blog extends Component {
 
@@ -16,20 +18,26 @@ class Blog extends Component {
 
 
         return (
+
+
             <div >
                 <header className={classes.Blog}>
                     <nav>
                         <ul>
                             {/* using Link instead of <a> prevents page refresh */}
-                            <li><Link to = "/"> Home </Link></li>
+                            <li><NavLink to = "/" activeStyle = {myStyle} exact> Home </NavLink></li>
                             
-                            {/* <li><Link to = "/new-post"> New Post </Link></li> */}
-                            <li><Link to = {{
+                            {/* <li><NavLink to = "/new-post" > New Post </NavLink></li> */}
+                            <li><NavLink activeStyle = {myStyle} to = {{
                                 pathname: '/new-post',
+                                
+                                // to create a relative path, so something like
+                                // pathname = this.props.match.url + '/new-post'
+                                
                                 hash: '#submit',
                                 search: 'quick-submit=true',
                             
-                            }}> New Post </Link></li>
+                            }}> New Post </NavLink></li>
                         
                         </ul>
                     </nav>
