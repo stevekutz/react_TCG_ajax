@@ -20,7 +20,7 @@ axios.interceptors.request.use(request => {
 })
 
 
-axios.interceptors.request.use(response => {
+axios.interceptors.response.use(response => {
     console.log(response)
     return response
 }, error => {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Post from '../../../components/Post/Post';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import axios from '../../../axios';
 
@@ -44,8 +44,15 @@ class Posts extends Component {
     }
 
     handler_selected = (id) => {
-        this.setState({selectedPostId: id})
+        // used previously
+        // this.setState({selectedPostId: id})
     
+        // to navigate programically(e.g. after HTTP req made)
+        // this.props.history.push({pathname: '/' + id})
+
+        // another synttax that works
+        this.props.history.push('/' + id)
+
     }
     
     
@@ -54,15 +61,16 @@ class Posts extends Component {
 
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
-                return (<Link className = {classes.Link} to = {'/' + post.id} key = {post.id} >
+                return (
+                        // <Link className = {classes.Link} to = {'/' + post.id} key = {post.id} >
                             <Post 
-                                    // key = {'/' + post.id}
+                                    key = {post.id}
                                     title = {post.title}
                                     author = {post.author}
                                     clicked = {() => this.handler_selected(post.id)}
-                                    // {...this.props}  // should provide routing props to Post component
+                                    {...this.props}  // should provide routing props to Post component
                                     />     
-                        </Link>
+                        //</Link>
                 )
             })        
         }
