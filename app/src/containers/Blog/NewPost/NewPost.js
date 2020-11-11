@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -8,7 +9,8 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Max',
+        submitted: false,
     }
 
     // allows 
@@ -32,6 +34,11 @@ class NewPost extends Component {
         axios.post('/posts', data)
             .then(response => {
                 console.log(response)
+                // this.props.history.push('/posts');  // back button in browser works
+
+                this.setState({ submitted: true});   // back button does not take you back
+
+                // this.props.history.replace('/posts');  // back button does not take you back
             })
     
     }
@@ -39,11 +46,20 @@ class NewPost extends Component {
 
 
     render () {
-
+        let redirect = null
+        if (this.state.submitted) {
+            redirect = <Redirect to ='/posts' />
+        }
     // console.log(this.props)
 
         return (
+
+
+
             <div className={classes.NewPost}>
+
+                {redirect}
+
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />
